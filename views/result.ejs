@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Information Result</title>
+</head>
+<body>
+<h1>Total Credits: <%= totalCredits %></h1>
+
+<!--  totalCredits, studentInfo, neededGrades, -->
+<pre><%= JSON.stringify(totalCredits, null, 2) %></pre>
+<pre><%= JSON.stringify(studentInfo, null, 2) %></pre>
+<pre><%= JSON.stringify(neededGrades, null, 2) %></pre>
+</body>
+</html>
