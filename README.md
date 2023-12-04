@@ -8,6 +8,7 @@
 
 
 <!-- PROJECT LOGO -->
+<!--suppress ALL -->
 <br />
 <div align="center">
   <a href="https://github.com/packjackisback/homeaccess-client">
