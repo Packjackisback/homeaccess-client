@@ -64,9 +64,14 @@ app.post('/submit', async (req, res) => {
         totalCredits += parseFloat(studentTranscript[semester].credits);
     }
     let currentGradeDict = {};
+    let currentSixWeeks = {};
     for (const course in studentAssignments) {   //putting averages into a better array for my sanity
         const average = studentAssignments[course].average;
         currentGradeDict[course] = parseInt(average, 10);
+        currentSixWeeks[course] = new Array();
+        currentSixWeeks[course].push(null);
+        currentSixWeeks[course].push(null);
+        currentSixWeeks[course].push(parseInt(average, 10));
     }
     function updateGradeDictWithSums(data) {
         data.forEach(row => {
@@ -84,6 +89,8 @@ app.post('/submit', async (req, res) => {
                     currentGradeDict[className] = sum;
                 }
             }
+            currentSixWeeks[className][0] = firstTerm;
+            currentSixWeeks[className][1] = secondTerm;
         });
         return currentGradeDict;
     }
@@ -121,7 +128,7 @@ app.post('/submit', async (req, res) => {
         }
     });
 
-//console.log(currentGradeDict);
+    console.log(currentGradeDict);
 //console.log(gradeSums);
     console.log(studentAssignments);
     console.log(studentReportCard);
@@ -131,7 +138,7 @@ app.post('/submit', async (req, res) => {
 
 
     // Example: sending fetched data to the template
-    res.render('result', { totalCredits, studentInfo, neededGrades,});
+    res.render('result', { totalCredits, studentInfo, neededGrades, currentSixWeeks});
 });
 
 app.listen(port, () => {
